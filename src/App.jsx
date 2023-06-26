@@ -62,12 +62,11 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <div>
+      <ul className='pizzas'>
         {pizzaData.map(pizza => (
-          // <Pizza name={pizza.name} photoName={pizza.photoName} />
-          <Pizza pizzaobj={pizza} />
+          <Pizza pizzaobj={pizza} key={pizza.name} />
         ))}
-      </div>
+      </ul>
 
       {/* <Pizza
         name='Pizza Spinaci'
@@ -88,14 +87,14 @@ function Menu() {
 
 function Pizza({ pizzaobj }) {
   return (
-    <div className='pizza'>
+    <li className='pizza'>
       <img src={pizzaobj.photoName} alt="" />
       <div>
         <h3>{pizzaobj.name}</h3>
         <p>{pizzaobj.ingredients}</p>
         <span>{pizzaobj.price}</span>
       </div>
-    </div>
+    </li>
   )
 }
 
@@ -108,39 +107,33 @@ function Header() {
 }
 
 
-// function Pizza() {
-//   return (
-//     <div className='pizzas'>
 
-//       <ul>{pizzaData.map((i) =>
-//         <li className='pizza' key={i.name}>
-//           <img src={i.photoName} />
-//           <b>{i.name}</b>
-//           {i.ingredients} <br />
-//           ${i.price}</li>)}</ul>
-//     </div>
-//   )
-// }
 function Footer() {
   const hour = new Date().getHours()
-  const openHour = 20
+  const openHour = 12
   const closeHour = 22
+  const isOpen = hour >= openHour && hour <= closeHour
 
-  if (hour >= openHour && hour <= closeHour) {
-    {
-      <p>
-        "We are currently open"
-      </p>
-    }
-  } else {
-    <p>
-      "We are currently closed"
-    </p>
-  }
+  // if (hour >= openHour && hour <= closeHour) {
+  //   {
+  //     <p>
+  //       "We are currently open"
+  //     </p>
+  //   }
+  // } else {
+  //   <p>
+  //     "We are currently closed"
+  //   </p>
+  // }
 
 
-  return <footer className='footer'>
-    {new Date().toLocaleTimeString()}. We're currently open
-  </footer>
+  return (<footer className='footer'>
+    {isOpen && (
+      <div className="order">
+        <p>We're open until {closeHour}:00. Come visit us or order online</p>
+        <button className="btn">Order</button>
+      </div>
+    )}
+  </footer>)
 }
 export default App
