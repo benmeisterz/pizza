@@ -59,28 +59,19 @@ function App() {
   )
 }
 function Menu() {
+  const pizzas = pizzaData
+  // const pizzas = []
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <ul className='pizzas'>
-        {pizzaData.map(pizza => (
-          <Pizza pizzaobj={pizza} key={pizza.name} />
-        ))}
-      </ul>
 
-      {/* <Pizza
-        name='Pizza Spinaci'
-        ingredient='Tomato, mozarella, spinach, and ricotta cheese'
-        photoName="pizzas/spinaci.jpg"
-        price={10}
-      />
-      <Pizza
-        name="Pizza Funghi"
-        ingredient='Tomato, mozarella, spinach, and ricotta cheese'
-        photoName="pizzas/funghi.jpg"
-        price={10}
-      /> */}
-
+      {pizzas && (
+        <ul className='pizzas'>
+          {pizzas.map(pizza => (
+            <Pizza pizzaobj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
     </main>
   )
 }
