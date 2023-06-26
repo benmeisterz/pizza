@@ -53,10 +53,49 @@ function App() {
       <div className="container">
         <Header />
         <Menu />
-        <Pizza />
         <Footer />
       </div>
     </>
+  )
+}
+function Menu() {
+  return (
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <div>
+        {pizzaData.map(pizza => (
+          // <Pizza name={pizza.name} photoName={pizza.photoName} />
+          <Pizza pizzaobj={pizza} />
+        ))}
+      </div>
+
+      {/* <Pizza
+        name='Pizza Spinaci'
+        ingredient='Tomato, mozarella, spinach, and ricotta cheese'
+        photoName="pizzas/spinaci.jpg"
+        price={10}
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredient='Tomato, mozarella, spinach, and ricotta cheese'
+        photoName="pizzas/funghi.jpg"
+        price={10}
+      /> */}
+
+    </main>
+  )
+}
+
+function Pizza({ pizzaobj }) {
+  return (
+    <div className='pizza'>
+      <img src={pizzaobj.photoName} alt="" />
+      <div>
+        <h3>{pizzaobj.name}</h3>
+        <p>{pizzaobj.ingredients}</p>
+        <span>{pizzaobj.price}</span>
+      </div>
+    </div>
   )
 }
 
@@ -67,23 +106,21 @@ function Header() {
   </header>
 
 }
-function Menu() {
-  return (
-    <main main className="menu">
-      <h2>Our Menu</h2>
-    </main>
-  )
-}
 
-function Pizza() {
-  return (
-    <div className='pizzas'>
 
-      <ul>{pizzaData.map((i) =>
-        <li className='pizza'><img src={i.photoName} /> <br /><b>{i.name}</b> - {i.ingredients} ${i.price}</li>)}</ul>
-    </div>
-  )
-}
+// function Pizza() {
+//   return (
+//     <div className='pizzas'>
+
+//       <ul>{pizzaData.map((i) =>
+//         <li className='pizza' key={i.name}>
+//           <img src={i.photoName} />
+//           <b>{i.name}</b>
+//           {i.ingredients} <br />
+//           ${i.price}</li>)}</ul>
+//     </div>
+//   )
+// }
 function Footer() {
   const hour = new Date().getHours()
   const openHour = 20
