@@ -1,4 +1,5 @@
-import './App.css'
+// import './App.css'
+import './index.css'
 
 const pizzaData = [
   {
@@ -49,20 +50,60 @@ const pizzaData = [
 function App() {
   return (
     <>
-      <h1>Hello React!</h1>
-      <Pizza />
+      <div className="container">
+        <Header />
+        <Menu />
+        <Pizza />
+        <Footer />
+      </div>
     </>
+  )
+}
+
+function Header() {
+  return <header className='header'>
+    <h1>Fast React Pizza Co.</h1>
+
+  </header>
+
+}
+function Menu() {
+  return (
+    <main main className="menu">
+      <h2>Our Menu</h2>
+    </main>
   )
 }
 
 function Pizza() {
   return (
-    <>
-      <h2>Pizza</h2>
-      <img src="pizzas/spinaci.jpg" alt="" />
+    <div className='pizzas'>
+
       <ul>{pizzaData.map((i) =>
-        <li><b>{i.name}</b> - {i.ingredients}</li>)}</ul>
-    </>
+        <li className='pizza'><img src={i.photoName} /> <br /><b>{i.name}</b> - {i.ingredients} ${i.price}</li>)}</ul>
+    </div>
   )
+}
+function Footer() {
+  const hour = new Date().getHours()
+  const openHour = 20
+  const closeHour = 22
+
+  if (hour >= openHour && hour <= closeHour) {
+    {
+      <p>
+        "We are currently open"
+      </p>
+    }
+  } else {
+    <p>
+      "We are currently closed"
+    </p>
+  }
+
+
+  return <footer className='footer'>
+    {new Date().toLocaleTimeString()}. We're currently open
+  </footer>
 }
 export default App
